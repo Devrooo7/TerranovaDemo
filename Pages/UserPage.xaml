@@ -1,0 +1,54 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TerranovaDemo"
+             x:Class="TerranovaDemo.UserPage"
+             BackgroundColor="LightGray"
+             Title="Terranova">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Terranova"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="White"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="20">
+
+                <Label x:Name="WelcomeLbl"
+                       Text="Bienvenido"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       HorizontalOptions="Center"/>
+
+                <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="5" Padding="5">
+                    <VerticalStackLayout>
+                        <Label Text="🌿 Tipo de Vegetación" TextColor="Black" FontSize="14"/>
+                        <Picker x:Name="PlantPicker" TextColor="Black"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="5" Padding="5">
+                    <VerticalStackLayout>
+                        <Label Text="🌎 Región Ambiental" TextColor="Black" FontSize="14"/>
+                        <Picker x:Name="RegionPicker" TextColor="Black"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Button Text="💾 Guardar Preferencias"
+                        Clicked="SaveButton_Clicked"
+                        BackgroundColor="Green"
+                        TextColor="White"
+                        Padding="20,10"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <local:BottomNavBar Grid.Row="1"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TerranovaDemo.LoginPage"
+             BackgroundColor="#0A1F0D">
+    <ScrollView>
+        <Grid Padding="24" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="14">
+            <Label Text="Iniciar sesión"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   Grid.Row="0"/>
+            <Label Text="TerraNova" 
+                   Grid.Row="1" 
+                   FontSize="36" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   TextColor="#A2FF4D"/>
+            <Border Grid.Row="2" Stroke="#4CAF50" StrokeShape="RoundRectangle 12" Padding="12" BackgroundColor="#121F12">
+                <Entry x:Name="EmailEntry" Placeholder="Correo" Keyboard="Email" TextColor="#A2FF4D" PlaceholderColor="#7FFF7F"/>
+            </Border>
+            <Border Grid.Row="3" Stroke="#4CAF50" StrokeShape="RoundRectangle 12" Padding="12" BackgroundColor="#121F12">
+                <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True" TextColor="#A2FF4D" PlaceholderColor="#7FFF7F"/>
+            </Border>
+            <Button Grid.Row="4" x:Name="LoginBtn" Text="Entrar" BackgroundColor="#4CAF50" TextColor="White"
+                    CornerRadius="12" FontAttributes="Bold" Clicked="LoginBtn_Clicked"/>
+            <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Center" Spacing="8">
+                <Label Text="¿No tienes cuenta?" TextColor="White"/>
+                <Button Text="Crear una" BackgroundColor="Transparent" TextColor="#A2FF4D"
+                        Clicked="GoRegister_Clicked"/>
+            </HorizontalStackLayout>
+            <Label Grid.Row="6" x:Name="StatusLbl" Text="" TextColor="#A2FF4D" HorizontalOptions="Center" Margin="0,10,0,20"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

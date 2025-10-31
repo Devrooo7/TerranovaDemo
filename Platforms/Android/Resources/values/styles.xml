@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Tema base del SplashScreen -->
+	<style name="Maui.SplashTheme" parent="Theme.Material3.DayNight.NoActionBar">
+		<!-- Fondo del splash -->
+		<item name="android:windowBackground">@color/maui_light</item>
+
+		<!-- Icono animado -->
+		<item name="android:windowSplashScreenAnimatedIcon">@mipmap/appicon</item>
+
+		<!-- Duración animación -->
+		<item name="android:windowSplashScreenAnimationDuration">400</item>
+	</style>
+
+	<!-- Tema principal después del splash -->
+	<style name="Maui.MainTheme" parent="Theme.Material3.DayNight.NoActionBar">
+		<item name="android:windowBackground">@color/maui_light</item>
+		<item name="colorPrimary">#512BD4</item>
+		<item name="colorPrimaryDark">#2B0B98</item>
+		<item name="colorAccent">#2B0B98</item>
+	</style>
+</resources>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             xmlns:controls="clr-namespace:TerranovaDemo"
+             x:Class="TerranovaDemo.MainPage"
+             BackgroundColor="#B7E4C7"
+             Padding="20">
+
+    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="20">
+
+        <!-- Barra superior -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Start" HorizontalOptions="Fill">
+            <Label Text="Bomba"
+                   TextColor="Black"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="BombaButton"
+                    Text="OFF"
+                    Clicked="BombaButton_Clicked"
+                    BackgroundColor="Red"
+                    TextColor="White"/>
+        </HorizontalStackLayout>
+
+        <!-- Gráfica de sensores -->
+        <skia:SKCanvasView x:Name="SensorsCanvas"
+                           Grid.Row="1"
+                           HeightRequest="300"
+                           PaintSurface="OnCanvasViewPaintSurface"/>
+
+        <!-- Barra inferior -->
+        <controls:BottomNavBar Grid.Row="2"/>
+    </Grid>
+</ContentPage>

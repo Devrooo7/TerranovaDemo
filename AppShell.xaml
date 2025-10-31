@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:TerranovaDemo"
+       x:Class="TerranovaDemo.AppShell"
+       BackgroundColor="SeaGreen">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="TerraNova"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="White"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ShellContent Route="mainpage" Title="TerraNova"
+                  ContentTemplate="{DataTemplate pages:MainPage}" />
+    <ShellContent Route="user" Title="Usuario"
+                  ContentTemplate="{DataTemplate pages:UserPage}" />
+    <ShellContent Route="settings" Title="Configuración"
+                  ContentTemplate="{DataTemplate pages:SettingsPage}" />
+</Shell>

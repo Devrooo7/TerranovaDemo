@@ -1,0 +1,13 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TerranovaDemo.BottomNavBar"
+             BackgroundColor="Transparent">
+    <HorizontalStackLayout Spacing="30" HorizontalOptions="Center" Padding="10">
+        <Button x:Name="HomeButton" Text="🏠" Clicked="HomeButton_Clicked"
+                BackgroundColor="Transparent" FontSize="20"/>
+        <Button x:Name="UserButton" Text="👤" Clicked="UserButton_Clicked"
+                BackgroundColor="Transparent" FontSize="20"/>
+        <Button x:Name="SettingsButton" Text="⚙️" Clicked="SettingsButton_Clicked"
+                BackgroundColor="Transparent" FontSize="20"/>
+    </HorizontalStackLayout>
+</ContentView>

@@ -1,0 +1,80 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TerranovaDemo"
+             x:Class="TerranovaDemo.SettingsPage"
+             BackgroundColor="LightGray"
+             Title="Configuración">
+
+    <Grid RowDefinitions="*,Auto">
+        <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center">
+
+            <Label Text="Configuración del sistema"
+                   TextColor="Black"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <!-- Entrada IP ESP32 -->
+            <Entry x:Name="Esp32IpEntry"
+                   Placeholder="IP del ESP32"
+                   Keyboard="Text"
+                   WidthRequest="250"
+                   HorizontalOptions="Center"/>
+
+            
+
+            <!-- Botón conectar ESP32 -->
+            <Button x:Name="ConnectButton"
+                    Text="Conectar ESP32"
+                    Clicked="ConnectESP32_Clicked"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#4CAF50" 
+                    TextColor="White"
+                    Padding="20,10"
+                    WidthRequest="250"
+                    CornerRadius="10"/>
+
+            <!-- Estado de conexión -->
+            <Label x:Name="ConnectionStatus" 
+                   Text="Estado: Desconectado" 
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <!-- Entrada Número de teléfono -->
+            <Entry x:Name="PhoneNumberEntry"
+                   Placeholder="Número de teléfono"
+                   Keyboard="Telephone"
+                   WidthRequest="250"
+                   HorizontalOptions="Center"/>
+
+            <!-- Botones de acción -->
+            <Button Text="💾 Guardar Configuración"
+                    Clicked="SavePhoneButton_Clicked"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Padding="20,10"
+                    WidthRequest="250"
+                    HorizontalOptions="Center"/>
+
+            <Button Text="🚪 Cerrar Sesión"
+                    Clicked="LogoutButton_Clicked"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    Padding="20,10"
+                    WidthRequest="250"
+                    HorizontalOptions="Center"/>
+
+            <Button Text="🗑️ Eliminar Cuenta"
+                    Clicked="DeleteAccountButton_Clicked"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Padding="20,10"
+                    WidthRequest="250"
+                    HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+
+        <local:BottomNavBar Grid.Row="1"/>
+    </Grid>
+</ContentPage>

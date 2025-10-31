@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TerranovaDemo.RegisterPage"
+             BackgroundColor="#0A1F0D"
+             Title="">
+
+    <Grid Padding="24" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="14">
+        <Label Text="Crear cuenta"
+           Grid.Row="0"
+           FontSize="28"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           TextColor="#A2FF4D" />
+
+        <Border Grid.Row="1" Stroke="#ddd" StrokeShape="RoundRectangle 8" Padding="10" BackgroundColor="White">
+            <Entry x:Name="NameEntry" Placeholder="Nombre" TextColor="Black" PlaceholderColor="Gray"/>
+        </Border>
+
+        <Border Grid.Row="2" Stroke="#ddd" StrokeShape="RoundRectangle 8" Padding="10" BackgroundColor="White">
+            <Entry x:Name="EmailEntry" Placeholder="Correo" Keyboard="Email" TextColor="Black" PlaceholderColor="Gray"/>
+        </Border>
+
+        <Border Grid.Row="3" Stroke="#ddd" StrokeShape="RoundRectangle 8" Padding="10" BackgroundColor="White">
+            <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"/>
+        </Border>
+
+        <Button Grid.Row="4" x:Name="RegisterBtn" Text="Crear cuenta"
+            BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10"
+            Clicked="RegisterBtn_Clicked" />
+
+        <Label Grid.Row="5" x:Name="StatusLbl" Text="" TextColor="White" HorizontalOptions="Center"/>
+    </Grid>
+</ContentPage>
