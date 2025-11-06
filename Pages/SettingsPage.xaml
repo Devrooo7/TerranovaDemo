@@ -6,6 +6,7 @@
              Title="Configuración">
 
     <Grid RowDefinitions="*,Auto">
+
         <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center">
 
             <Label Text="Configuración del sistema"
@@ -14,32 +15,24 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center"/>
 
-            <!-- Entrada IP ESP32 -->
-            <Entry x:Name="Esp32IpEntry"
-                   Placeholder="IP del ESP32"
-                   Keyboard="Text"
-                   WidthRequest="250"
-                   HorizontalOptions="Center"/>
+            <!-- Estado de conexión ESP32 -->
+            <Label x:Name="ConnectionStatus" 
+                   Text="Estado: Buscando ESP32..."
+                   TextColor="Orange"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   FontSize="18"/>
 
-            
-
-            <!-- Botón conectar ESP32 -->
+            <!-- Botón conectar manualmente (opcional) -->
             <Button x:Name="ConnectButton"
-                    Text="Conectar ESP32"
+                    Text="🔄 Reconectar ESP32"
                     Clicked="ConnectESP32_Clicked"
-                    HorizontalOptions="Center"
-                    BackgroundColor="#4CAF50" 
+                    BackgroundColor="#4CAF50"
                     TextColor="White"
                     Padding="20,10"
                     WidthRequest="250"
-                    CornerRadius="10"/>
-
-            <!-- Estado de conexión -->
-            <Label x:Name="ConnectionStatus" 
-                   Text="Estado: Desconectado" 
-                   TextColor="Red"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"/>
+                    CornerRadius="10"
+                    HorizontalOptions="Center"/>
 
             <!-- Entrada Número de teléfono -->
             <Entry x:Name="PhoneNumberEntry"
@@ -75,6 +68,7 @@
 
         </VerticalStackLayout>
 
+        <!-- Barra inferior -->
         <local:BottomNavBar Grid.Row="1"/>
     </Grid>
 </ContentPage>

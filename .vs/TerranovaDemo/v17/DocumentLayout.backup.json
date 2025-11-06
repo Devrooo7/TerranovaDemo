@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\terranovademo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:terranovademo.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -27,14 +51,6 @@
       "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\registerpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\registerpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -45,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,14 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\helpers\\navhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:helpers\\navhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|solutionrelative:pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E76C50F-526B-4FFC-B119-A40AFBD4FCBE}|TerranovaDemo.csproj|c:\\users\\roo07\\source\\repos\\terranovademo\\platforms\\android\\mainactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -161,56 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SettingsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml.cs",
-              "RelativeDocumentMoniker": "Pages\\SettingsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml.cs",
-              "RelativeToolTip": "Pages\\SettingsPage.xaml.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAkwEUAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T01:04:22.921Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SettingsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml",
-              "RelativeDocumentMoniker": "Pages\\SettingsPage.xaml",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml",
-              "RelativeToolTip": "Pages\\SettingsPage.xaml",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAswFAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-15T01:04:06.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Services\\AuthService.cs",
-              "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAswDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T01:23:46.118Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TerranovaDemo.csproj",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\TerranovaDemo.csproj",
-              "RelativeDocumentMoniker": "TerranovaDemo.csproj",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\TerranovaDemo.csproj",
-              "RelativeToolTip": "TerranovaDemo.csproj",
-              "ViewState": "AgIAACIAAAAAAAAAAAAiwCkAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-04T01:36:53.391Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "UserPage.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\UserPage.xaml",
               "RelativeDocumentMoniker": "Pages\\UserPage.xaml",
@@ -222,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "FirebaseAuthClient.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Services\\FirebaseAuthClient.cs",
               "RelativeDocumentMoniker": "Services\\FirebaseAuthClient.cs",
@@ -234,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "SessionStore.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Services\\SessionStore.cs",
               "RelativeDocumentMoniker": "Services\\SessionStore.cs",
@@ -246,7 +201,110 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml.cs*",
+              "RelativeToolTip": "Pages\\MainPage.xaml.cs*",
+              "ViewState": "AgIAAAYBAAAAAAAAAAAIwBcBAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T23:41:44.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml",
+              "RelativeToolTip": "Pages\\MainPage.xaml",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-14T23:41:22.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SettingsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\SettingsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml.cs",
+              "RelativeToolTip": "Pages\\SettingsPage.xaml.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAADwv2sAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T01:04:22.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SettingsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\SettingsPage.xaml",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\SettingsPage.xaml",
+              "RelativeToolTip": "Pages\\SettingsPage.xaml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAIwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-15T01:04:06.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "LoginPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\LoginPage.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\LoginPage.xaml.cs",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\LoginPage.xaml.cs",
+              "RelativeToolTip": "Pages\\LoginPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T00:11:06.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TerranovaDemo.csproj",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\TerranovaDemo.csproj",
+              "RelativeDocumentMoniker": "TerranovaDemo.csproj",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\TerranovaDemo.csproj",
+              "RelativeToolTip": "TerranovaDemo.csproj",
+              "ViewState": "AgIAABkAAAAAAAAAAAAiwCcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-04T01:36:53.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAswDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T01:23:46.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOcBAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG/SURBVDhPrZRNTgIxFMerDIaEhHgU97JxwUKGGaNeQJdyCY0XUBDWGhg4AB\u002BuvQk7OQCRFTP1fXWmMxUMCT94ee177eu/LVQdFK31kTSJ0WgEIa0SMJ2A6QTHcF9iicQqlYpa/6zv2\u002B2HD5nuEkWR/l4udRzHZBtjGzFor1YrPR6P9WKx0MNhpN96vTuZThyLJ1AJLK/iJFFxjBanBsXIozqkWq2qev1c1Wq19063e0ZBwBNP4JaQ6WRC/i8ajQb5wWBAvnxyghpOqQPkC8L5IEEQKjgxaqOTFsCd65tb6nmlkur1\u002BxwXCgX58KfT7QptwvCK52wrSLcJvtUKOABkQ6HFXwbGsmMRBkchzpjNphLZDSrEn5G1qnsp\u002BPEtheloXouRnXDTTjhb5tXmeyg0IgzuliHp\u002By0OANbiOCDXp1IYo3mMUxBT8/mMA/8QhGH6ZzC4Zwi5ZqoQB9M3h62I/\u002B/SAQpniBmtPvdQyGeYUdgyX8pl05eIBSxmTzQYEYbc42AuJQWLGJNQEcrJG4A4BTHneSW2sqfKOyybkxXMPbAvrx3IsyLzkPJFmUcWYtDntjG6lIvnp8cvKXNIlPoFvstpJRlQPIAAAAAASUVORK5CYII=",
+              "WhenOpened": "2025-10-31T04:36:43.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "UserPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\UserPage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\UserPage.xaml.cs",
@@ -258,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "RegisterPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\RegisterPage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\RegisterPage.xaml.cs",
@@ -270,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "RegisterPage.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\RegisterPage.xaml",
               "RelativeDocumentMoniker": "Pages\\RegisterPage.xaml",
@@ -282,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "LoginPage.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\LoginPage.xaml",
               "RelativeDocumentMoniker": "Pages\\LoginPage.xaml",
@@ -294,19 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LoginPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\LoginPage.xaml.cs",
-              "RelativeDocumentMoniker": "Pages\\LoginPage.xaml.cs",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\LoginPage.xaml.cs",
-              "RelativeToolTip": "Pages\\LoginPage.xaml.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAowD4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T00:11:06.972Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "BottomNavBar.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Controls\\BottomNavBar.xaml",
               "RelativeDocumentMoniker": "Controls\\BottomNavBar.xaml",
@@ -318,7 +364,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "App.g.i.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
               "RelativeDocumentMoniker": "obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
@@ -330,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "BottomNavBar.xaml.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Controls\\BottomNavBar.xaml.cs",
               "RelativeDocumentMoniker": "Controls\\BottomNavBar.xaml.cs",
@@ -342,7 +388,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "NavHelper.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Helpers\\NavHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\NavHelper.cs",
@@ -354,31 +400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "Pages\\MainPage.xaml.cs",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml.cs",
-              "RelativeToolTip": "Pages\\MainPage.xaml.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAAAmwMoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T23:41:44.017Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml",
-              "RelativeDocumentMoniker": "Pages\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Pages\\MainPage.xaml",
-              "RelativeToolTip": "Pages\\MainPage.xaml",
-              "ViewState": "AgIAABMAAAAAAAAAAAAmwCQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-14T23:41:22.925Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "MainActivity.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\MainActivity.cs",
               "RelativeDocumentMoniker": "Platforms\\Android\\MainActivity.cs",
@@ -390,7 +412,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -402,7 +424,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -414,7 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "AppShell.xaml.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\AppShell.xaml.cs",
               "RelativeDocumentMoniker": "AppShell.xaml.cs",
@@ -426,7 +448,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "AppShell.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\AppShell.xaml",
               "RelativeDocumentMoniker": "AppShell.xaml",
@@ -438,7 +460,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "SmsService.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\SmsService.cs",
               "RelativeDocumentMoniker": "SmsService.cs",
@@ -450,7 +472,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\MauiProgram.cs",
               "RelativeDocumentMoniker": "MauiProgram.cs",
@@ -462,7 +484,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "AppState.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\AppState.cs",
               "RelativeDocumentMoniker": "AppState.cs",
@@ -474,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "styles.xml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\Resources\\values\\styles.xml",
               "RelativeDocumentMoniker": "Platforms\\Android\\Resources\\values\\styles.xml",
@@ -486,7 +508,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "colors.xml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\Resources\\values\\colors.xml",
               "RelativeDocumentMoniker": "Platforms\\Android\\Resources\\values\\colors.xml",
@@ -498,7 +520,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "AndroidManifest.xml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\AndroidManifest.xml",
               "RelativeDocumentMoniker": "Platforms\\Android\\AndroidManifest.xml",
@@ -510,7 +532,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "network_security_config.xml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\Resources\\xml\\network_security_config.xml",
               "RelativeDocumentMoniker": "Platforms\\Android\\Resources\\xml\\network_security_config.xml",
@@ -522,7 +544,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "AppDelegate.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\iOS\\AppDelegate.cs",
               "RelativeDocumentMoniker": "Platforms\\iOS\\AppDelegate.cs",
@@ -534,7 +556,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "MainApplication.cs",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\MainApplication.cs",
               "RelativeDocumentMoniker": "Platforms\\Android\\MainApplication.cs",
@@ -546,7 +568,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "network_security_config.xml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Platforms\\Android\\Resources\\xml\\network_security_config.xml",
               "RelativeDocumentMoniker": "Platforms\\Android\\Resources\\xml\\network_security_config.xml",
@@ -558,7 +580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "Microsoft.Maui.Controls.targets",
               "DocumentMoniker": "C:\\Users\\roo07\\.nuget\\packages\\microsoft.maui.controls.build.tasks\\9.0.60\\buildTransitive\\netstandard2.0\\Microsoft.Maui.Controls.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\microsoft.maui.controls.build.tasks\\9.0.60\\buildTransitive\\netstandard2.0\\Microsoft.Maui.Controls.targets",
@@ -570,18 +592,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "TerranovaDemo",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\TerranovaDemo.csproj",
               "RelativeDocumentMoniker": "TerranovaDemo.csproj",
               "ToolTip": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\TerranovaDemo.csproj",
               "RelativeToolTip": "TerranovaDemo.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-14T01:13:58.916Z"
+              "WhenOpened": "2025-10-14T01:13:58.916Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "Colors.xaml",
               "DocumentMoniker": "C:\\Users\\roo07\\source\\repos\\TerranovaDemo\\Resources\\Styles\\Colors.xaml",
               "RelativeDocumentMoniker": "Resources\\Styles\\Colors.xaml",

@@ -10,19 +10,26 @@
     <Grid RowDefinitions="Auto,*,Auto" RowSpacing="20">
 
         <!-- Barra superior -->
-        <HorizontalStackLayout Spacing="10" VerticalOptions="Start" HorizontalOptions="Fill">
+        <Grid ColumnDefinitions="Auto,Auto,*,Auto" VerticalOptions="Start">
+            <!-- Etiqueta y botón alineados a la izquierda -->
             <Label Text="Bomba"
+                   Grid.Column="0"
                    TextColor="Black"
                    FontSize="24"
                    FontAttributes="Bold"
                    VerticalOptions="Center"
-                   HorizontalOptions="CenterAndExpand"/>
+                   HorizontalOptions="Start" />
+
             <Button x:Name="BombaButton"
+                    Grid.Column="1"
                     Text="OFF"
                     Clicked="BombaButton_Clicked"
                     BackgroundColor="Red"
-                    TextColor="White"/>
-        </HorizontalStackLayout>
+                    TextColor="White"
+                    Margin="10,0,0,0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+        </Grid>
 
         <!-- Gráfica de sensores -->
         <skia:SKCanvasView x:Name="SensorsCanvas"
