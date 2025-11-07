@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "288943541805",
+    "firebase_url": "https://terranova-62f60-default-rtdb.firebaseio.com",
+    "project_id": "terranova-62f60",
+    "storage_bucket": "terranova-62f60.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288943541805:android:2ec048e78cba81bcbdb2a4",
+        "android_client_info": {
+          "package_name": "TerraNova1.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz6ImYD2-iMa15c09AYarAD0iwnmAx3n8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
