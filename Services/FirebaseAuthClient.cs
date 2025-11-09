@@ -45,10 +45,11 @@ namespace TerranovaDemo.Services
         {
             var url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={ApiKey}";
 
+            // ✅ corrección: se serializa correctamente el JSON con comillas válidas
             var data = new
             {
-                email,
-                password,
+                email = email,
+                password = password,
                 returnSecureToken = true
             };
 
@@ -184,8 +185,8 @@ namespace TerranovaDemo.Services
 #endif
         }
 
-        // ------------------- 🔹 FIRESTORE REST API ANDROID -------------------
 #if ANDROID
+        // ------------------- 🔹 FIRESTORE REST API ANDROID -------------------
         private async Task SaveUserInFirestoreAsync(string uid, string email, string? displayName, string idToken)
         {
             var firestoreUrl = $"https://firestore.googleapis.com/v1/projects/terranova-62f60/databases/(default)/documents/users/{uid}";
