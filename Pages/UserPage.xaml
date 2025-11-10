@@ -1,54 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TerranovaDemo"
              x:Class="TerranovaDemo.UserPage"
-             BackgroundColor="LightGray"
-             Title="Terranova">
-
-    <Shell.TitleView>
-        <Grid>
-            <Label Text="Terranova"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   FontSize="32"
-                   FontAttributes="Bold"
-                   TextColor="White"/>
-        </Grid>
-    </Shell.TitleView>
+             Title="Usuario"
+             Shell.NavBarIsVisible="True"
+             Shell.BackgroundColor="#1B5E20"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             BackgroundColor="#F0F0F0">
 
     <Grid RowDefinitions="*,Auto">
-        <ScrollView Grid.Row="0">
-            <VerticalStackLayout Padding="20" Spacing="20">
 
+        <!-- Contenido principal centrado -->
+        <ScrollView Grid.Row="0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+            <VerticalStackLayout Padding="20,40"
+                                 Spacing="20"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="320">
+
+                <!-- Título -->
                 <Label x:Name="WelcomeLbl"
                        Text="Bienvenido"
-                       FontSize="20"
+                       FontSize="26"
                        FontAttributes="Bold"
-                       TextColor="Black"
-                       HorizontalOptions="Center"/>
+                       TextColor="#1B5E20"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
 
-                <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="5" Padding="5">
+                <!-- Tipo de vegetación -->
+                <Frame BorderColor="Black"
+                       BackgroundColor="White"
+                       CornerRadius="10"
+                       Padding="10"
+                       WidthRequest="260"
+                       HorizontalOptions="Center">
                     <VerticalStackLayout>
-                        <Label Text="🌿 Tipo de Vegetación" TextColor="Black" FontSize="14"/>
-                        <Picker x:Name="PlantPicker" TextColor="Black"/>
+                        <Label Text="🌿 Tipo de Vegetación"
+                               TextColor="Black"
+                               FontSize="16"
+                               HorizontalTextAlignment="Center"/>
+                        <Picker x:Name="PlantPicker"
+                                TextColor="Black"
+                                WidthRequest="240"
+                                HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                 </Frame>
 
-                <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="5" Padding="5">
+                <!-- Región ambiental -->
+                <Frame BorderColor="Black"
+                       BackgroundColor="White"
+                       CornerRadius="10"
+                       Padding="10"
+                       WidthRequest="260"
+                       HorizontalOptions="Center">
                     <VerticalStackLayout>
-                        <Label Text="🌎 Región Ambiental" TextColor="Black" FontSize="14"/>
-                        <Picker x:Name="RegionPicker" TextColor="Black"/>
+                        <Label Text="🌎 Región Ambiental"
+                               TextColor="Black"
+                               FontSize="16"
+                               HorizontalTextAlignment="Center"/>
+                        <Picker x:Name="RegionPicker"
+                                TextColor="Black"
+                                WidthRequest="240"
+                                HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                 </Frame>
 
+                <!-- Botón Guardar -->
                 <Button Text="💾 Guardar Preferencias"
                         Clicked="SaveButton_Clicked"
-                        BackgroundColor="Green"
+                        BackgroundColor="#43A047"
                         TextColor="White"
-                        Padding="20,10"/>
+                        CornerRadius="12"
+                        Padding="20,10"
+                        WidthRequest="260"
+                        HorizontalOptions="Center"/>
+
             </VerticalStackLayout>
         </ScrollView>
 
+        <!-- Barra inferior -->
         <local:BottomNavBar Grid.Row="1"/>
+
     </Grid>
 </ContentPage>

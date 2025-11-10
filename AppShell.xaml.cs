@@ -1,9 +1,10 @@
-﻿namespace TerranovaDemo;
-
-public partial class AppShell : Shell
+﻿namespace TerranovaDemo
 {
-    public AppShell()
+    public partial class AppShell : Shell
     {
-        InitializeComponent();
+        public AppShell()
+        {
+            InitializeComponent();
+        }
     }
 }

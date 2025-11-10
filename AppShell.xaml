@@ -3,23 +3,29 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:pages="clr-namespace:TerranovaDemo"
        x:Class="TerranovaDemo.AppShell"
-       BackgroundColor="SeaGreen">
+       Title="TerraNova"
+       FlyoutBehavior="Flyout"
+       BackgroundColor="White">
 
-    <Shell.TitleView>
-        <Grid>
-            <Label Text="TerraNova"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   FontSize="32"
-                   FontAttributes="Bold"
-                   TextColor="White"/>
-        </Grid>
-    </Shell.TitleView>
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ShellBackgroundColor">#4CAF50</Color>
+            <Color x:Key="ShellTitleColor">White</Color>
+            <Color x:Key="ShellForegroundColor">White</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
 
-    <ShellContent Route="mainpage" Title="TerraNova"
-                  ContentTemplate="{DataTemplate pages:MainPage}" />
-    <ShellContent Route="user" Title="Usuario"
-                  ContentTemplate="{DataTemplate pages:UserPage}" />
-    <ShellContent Route="settings" Title="Configuración"
-                  ContentTemplate="{DataTemplate pages:SettingsPage}" />
+    <!-- Menú lateral (mantiene los íconos y rutas) -->
+    <FlyoutItem Title="Inicio" Icon="home.png">
+        <ShellContent Route="mainpage" ContentTemplate="{DataTemplate pages:MainPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Usuario" Icon="user.png">
+        <ShellContent Route="user" ContentTemplate="{DataTemplate pages:UserPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Configuración" Icon="settings.png">
+        <ShellContent Route="settings" ContentTemplate="{DataTemplate pages:SettingsPage}" />
+    </FlyoutItem>
+
 </Shell>

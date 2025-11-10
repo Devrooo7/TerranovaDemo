@@ -1,15 +1,17 @@
-﻿namespace TerranovaDemo;
-
-public partial class App : Application
+﻿namespace TerranovaDemo
 {
-    public App()
+    public partial class App : Application
     {
-        InitializeComponent();
-    }
+        public App()
+        {
+            InitializeComponent();
 
-    protected override Window CreateWindow(IActivationState? activationState)
-    {
-        var nav = new NavigationPage(new LoginPage());
-        return new Window(nav);
+            // ✅ Inicia directamente con el LoginPage
+            MainPage = new NavigationPage(new LoginPage())
+            {
+                BarBackgroundColor = Color.FromArgb("#4CAF50"),
+                BarTextColor = Colors.White
+            };
+        }
     }
 }

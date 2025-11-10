@@ -30,11 +30,16 @@
 	<ItemGroup>
 		<!-- Recursos MAUI -->
 		<MauiIcon Include="Resources\AppIcon\appicon.png" Color="#FFFFFF" />
-		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#0A1F0D" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#FFFFFF" BaseSize="512,512" />
+
+		<!-- ✅ Incluye automáticamente todas las imágenes (sin duplicar) -->
 		<MauiImage Include="Resources\Images\**\*" />
+
 		<MauiFont Include="Resources\Fonts\**\*" />
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+
+
 
 	<ItemGroup>
 		<!-- Paquetes -->
@@ -101,5 +106,13 @@
 	<ItemGroup>
         <GoogleServicesJson Include="Platforms\Android\google-services.json" />
     </ItemGroup>
+	<ItemGroup>
+	  <MauiImage Update="Resources\Images\plant_bg1.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Update="Resources\Images\plant_bg1_extended.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiImage>
+	</ItemGroup>
 
 </Project>

@@ -52,4 +52,9 @@ public partial class RegisterPage : ContentPage
             StatusLbl.Text = string.Empty;
         }
     }
+    private async void GoLogin_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new LoginPage());
+    }
+
 }

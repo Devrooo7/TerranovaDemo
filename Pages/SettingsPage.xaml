@@ -1,74 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TerranovaDemo"
              x:Class="TerranovaDemo.SettingsPage"
-             BackgroundColor="LightGray"
-             Title="Configuración">
+             Title="Configuración"
+             Shell.NavBarIsVisible="True"
+             Shell.BackgroundColor="#1B5E20"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             BackgroundColor="#F0F0F0">
 
     <Grid RowDefinitions="*,Auto">
 
-        <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center">
+        <!-- Contenido principal centrado para Android -->
+        <ScrollView Grid.Row="0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+            <VerticalStackLayout Padding="20,40"
+                                 Spacing="20"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="320">
 
-            <Label Text="Configuración del sistema"
-                   TextColor="Black"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"/>
+                <!-- Título principal -->
+                <Label Text="Configuración del Sistema"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="#1B5E20"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
 
-            <!-- Estado de conexión ESP32 -->
-            <Label x:Name="ConnectionStatus" 
-                   Text="Estado: Buscando ESP32..."
-                   TextColor="Orange"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   FontSize="18"/>
+                <!-- Estado de conexión -->
+                <Label x:Name="ConnectionStatus"
+                       Text="Estado: Buscando ESP32..."
+                       TextColor="#F57C00"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
 
-            <!-- Botón conectar manualmente (opcional) -->
-            <Button x:Name="ConnectButton"
-                    Text="🔄 Reconectar ESP32"
-                    Clicked="ConnectESP32_Clicked"
-                    BackgroundColor="#4CAF50"
-                    TextColor="White"
-                    Padding="20,10"
-                    WidthRequest="250"
-                    CornerRadius="10"
-                    HorizontalOptions="Center"/>
+                <!-- Botón Reconectar -->
+                <Button x:Name="ConnectButton"
+                        Text="🔄 Reconectar ESP32"
+                        Clicked="ConnectESP32_Clicked"
+                        BackgroundColor="#2E7D32"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Padding="20,10"
+                        WidthRequest="260"
+                        HorizontalOptions="Center"/>
 
-            <!-- Entrada Número de teléfono -->
-            <Entry x:Name="PhoneNumberEntry"
-                   Placeholder="Número de teléfono"
-                   Keyboard="Telephone"
-                   WidthRequest="250"
-                   HorizontalOptions="Center"/>
+                <!-- Entrada de número telefónico -->
+                <Entry x:Name="PhoneNumberEntry"
+                       Placeholder="Número de teléfono"
+                       Keyboard="Telephone"
+                       BackgroundColor="White"
+                       TextColor="Black"
+                       PlaceholderColor="#4CAF50"
+                       WidthRequest="260"
+                       HorizontalOptions="Center"/>
 
-            <!-- Botones de acción -->
-            <Button Text="💾 Guardar Configuración"
-                    Clicked="SavePhoneButton_Clicked"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    Padding="20,10"
-                    WidthRequest="250"
-                    HorizontalOptions="Center"/>
+                <!-- Botón Guardar -->
+                <Button Text="💾 Guardar Configuración"
+                        Clicked="SavePhoneButton_Clicked"
+                        BackgroundColor="#43A047"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Padding="20,10"
+                        WidthRequest="260"
+                        HorizontalOptions="Center"/>
 
-            <Button Text="🚪 Cerrar Sesión"
-                    Clicked="LogoutButton_Clicked"
-                    BackgroundColor="Gray"
-                    TextColor="White"
-                    Padding="20,10"
-                    WidthRequest="250"
-                    HorizontalOptions="Center"/>
+                <!-- Botón Cerrar sesión -->
+                <Button Text="🚪 Cerrar Sesión"
+                        Clicked="LogoutButton_Clicked"
+                        BackgroundColor="#1B5E20"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Padding="20,10"
+                        WidthRequest="260"
+                        HorizontalOptions="Center"/>
 
-            <Button Text="🗑️ Eliminar Cuenta"
-                    Clicked="DeleteAccountButton_Clicked"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    Padding="20,10"
-                    WidthRequest="250"
-                    HorizontalOptions="Center"/>
+                <!-- Botón Eliminar cuenta -->
+                <Button Text="🗑️ Eliminar Cuenta"
+                        Clicked="DeleteAccountButton_Clicked"
+                        BackgroundColor="#D32F2F"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Padding="20,10"
+                        WidthRequest="260"
+                        HorizontalOptions="Center"
+                        Margin="0,10,0,40"/>
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
 
         <!-- Barra inferior -->
         <local:BottomNavBar Grid.Row="1"/>
+
     </Grid>
 </ContentPage>

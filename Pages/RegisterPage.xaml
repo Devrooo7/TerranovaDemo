@@ -2,33 +2,79 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TerranovaDemo.RegisterPage"
-             BackgroundColor="#0A1F0D"
-             Title="">
+             BackgroundColor="White"
+             Title="Registro"
+             Shell.NavBarHasShadow="False">
 
-    <Grid Padding="24" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="14">
-        <Label Text="Crear cuenta"
-           Grid.Row="0"
-           FontSize="28"
-           FontAttributes="Bold"
-           HorizontalOptions="Center"
-           TextColor="#A2FF4D" />
+    <Shell.TitleView>
+        <Grid BackgroundColor="#4CAF50" HeightRequest="50" VerticalOptions="FillAndExpand">
+            <Label Text="Registro de usuario"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="18"/>
+        </Grid>
+    </Shell.TitleView>
 
-        <Border Grid.Row="1" Stroke="#ddd" StrokeShape="RoundRectangle 8" Padding="10" BackgroundColor="White">
-            <Entry x:Name="NameEntry" Placeholder="Nombre" TextColor="Black" PlaceholderColor="Gray"/>
-        </Border>
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="18" VerticalOptions="Center">
 
-        <Border Grid.Row="2" Stroke="#ddd" StrokeShape="RoundRectangle 8" Padding="10" BackgroundColor="White">
-            <Entry x:Name="EmailEntry" Placeholder="Correo" Keyboard="Email" TextColor="Black" PlaceholderColor="Gray"/>
-        </Border>
+            <!-- LOGO -->
+            <Image Source="logo.png"
+                   HeightRequest="120"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0"/>
 
-        <Border Grid.Row="3" Stroke="#ddd" StrokeShape="RoundRectangle 8" Padding="10" BackgroundColor="White">
-            <Entry x:Name="PasswordEntry" Placeholder="Contraseña" IsPassword="True" TextColor="Black" PlaceholderColor="Gray"/>
-        </Border>
+            <Label Text="Crear cuenta en TerraNova"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#2E7D32"
+                   Margin="0,0,0,10"/>
 
-        <Button Grid.Row="4" x:Name="RegisterBtn" Text="Crear cuenta"
-            BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10"
-            Clicked="RegisterBtn_Clicked" />
+            <!-- NOMBRE -->
+            <Border Stroke="#81C784" StrokeShape="RoundRectangle 10" Padding="12" BackgroundColor="#F5F5F5">
+                <Entry x:Name="NameEntry" Placeholder="Nombre completo"
+                       TextColor="Black" PlaceholderColor="#388E3C"/>
+            </Border>
 
-        <Label Grid.Row="5" x:Name="StatusLbl" Text="" TextColor="White" HorizontalOptions="Center"/>
-    </Grid>
+            <!-- CORREO -->
+            <Border Stroke="#81C784" StrokeShape="RoundRectangle 10" Padding="12" BackgroundColor="#F5F5F5">
+                <Entry x:Name="EmailEntry" Placeholder="Correo electrónico"
+                       Keyboard="Email" TextColor="Black" PlaceholderColor="#388E3C"/>
+            </Border>
+
+            <!-- CONTRASEÑA -->
+            <Border Stroke="#81C784" StrokeShape="RoundRectangle 10" Padding="12" BackgroundColor="#F5F5F5">
+                <Entry x:Name="PasswordEntry" Placeholder="Contraseña"
+                       IsPassword="True" TextColor="Black" PlaceholderColor="#388E3C"/>
+            </Border>
+
+            <!-- BOTÓN REGISTRAR -->
+            <Button x:Name="RegisterBtn"
+                    Text="Crear cuenta"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="12"
+                    FontAttributes="Bold"
+                    HeightRequest="48"
+                    Clicked="RegisterBtn_Clicked"/>
+
+            <!-- SECCIÓN DE STATUS -->
+            <Label x:Name="StatusLbl"
+                   Text=""
+                   TextColor="#2E7D32"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- BOTÓN DE VOLVER -->
+            <Button Text="Volver al inicio de sesión"
+                    BackgroundColor="Transparent"
+                    TextColor="#2E7D32"
+                    FontAttributes="Bold"
+                    Clicked="GoLogin_Clicked"
+                    Margin="0,10,0,20"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
