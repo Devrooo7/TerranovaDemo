@@ -1,35 +1,39 @@
 ﻿using Microsoft.Maui.Storage;
-using System.Threading.Tasks;
 
 namespace TerranovaDemo.Services
 {
     public static class SessionStore
     {
-        private const string KEY_IDTOKEN = "fb_idToken";
-        private const string KEY_REFRESH = "fb_refreshToken";
-        private const string KEY_UID = "fb_uid";
-        private const string KEY_EMAIL = "fb_email";
-        private const string KEY_NAME = "fb_displayName";
+        public static void SaveToken(string token) =>
+            Preferences.Set("token", token);
 
-        public static async Task SaveAsync(string? idToken, string? refresh, string? uid, string? email, string? name)
+        public static string GetToken() =>
+            Preferences.Get("token", "");
+
+        public static void SaveRefresh(string token) =>
+            Preferences.Set("refresh", token);
+
+        public static string GetRefresh() =>
+            Preferences.Get("refresh", "");
+
+        public static void SaveUid(string uid) =>
+            Preferences.Set("uid", uid);
+
+        public static string GetUid() =>
+            Preferences.Get("uid", "");
+
+        public static void SaveUserName(string name) =>
+            Preferences.Set("user_name", name);
+
+        public static string GetUserName() =>
+            Preferences.Get("user_name", "Usuario");
+
+        public static void ClearSession()
         {
-            await SecureStorage.SetAsync(KEY_IDTOKEN, idToken ?? string.Empty);
-            await SecureStorage.SetAsync(KEY_REFRESH, refresh ?? string.Empty);
-            await SecureStorage.SetAsync(KEY_UID, uid ?? string.Empty);
-            await SecureStorage.SetAsync(KEY_EMAIL, email ?? string.Empty);
-            await SecureStorage.SetAsync(KEY_NAME, name ?? string.Empty);
-        }
-
-        public static Task<string?> GetIdTokenAsync() => SecureStorage.GetAsync(KEY_IDTOKEN);
-
-        public static async Task ClearAsync()
-        {
-            SecureStorage.Remove(KEY_IDTOKEN);
-            SecureStorage.Remove(KEY_REFRESH);
-            SecureStorage.Remove(KEY_UID);
-            SecureStorage.Remove(KEY_EMAIL);
-            SecureStorage.Remove(KEY_NAME);
-            await Task.CompletedTask;
+            Preferences.Remove("token");
+            Preferences.Remove("refresh");
+            Preferences.Remove("uid");
+            Preferences.Remove("user_name");
         }
     }
 }

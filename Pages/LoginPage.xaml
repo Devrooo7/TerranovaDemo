@@ -6,14 +6,13 @@
 
     <AbsoluteLayout>
 
-        <!-- 🌿 Fondo adaptable a todas las pantallas -->
+        <!-- Fondo -->
         <Image Source="plant_bg1_extended.png"
                Aspect="AspectFill"
                Opacity="0.75"
                AbsoluteLayout.LayoutFlags="All"
                AbsoluteLayout.LayoutBounds="0,0,1,1"/>
 
-        <!-- Contenido principal -->
         <ScrollView AbsoluteLayout.LayoutFlags="All"
                     AbsoluteLayout.LayoutBounds="0,0,1,1">
             <VerticalStackLayout Padding="30"
@@ -76,11 +75,11 @@
                             Clicked="GoRegister_Clicked"/>
                 </HorizontalStackLayout>
 
-                <!-- STATUS -->
                 <Label x:Name="StatusLbl"
                        Text=""
                        TextColor="#4CAF50"
                        HorizontalOptions="Center"/>
+
             </VerticalStackLayout>
         </ScrollView>
     </AbsoluteLayout>

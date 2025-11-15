@@ -1,60 +1,69 @@
 ﻿using Microsoft.Maui.Controls;
+using System;
 using TerranovaDemo.Services;
 
-namespace TerranovaDemo;
-
-public partial class RegisterPage : ContentPage
+namespace TerranovaDemo
 {
-    public RegisterPage()
+    public partial class RegisterPage : ContentPage
     {
-        InitializeComponent();
-    }
+        private readonly AuthService _auth;
 
-    private async void RegisterBtn_Clicked(object sender, EventArgs e)
-    {
-        try
+        // Constructor DI
+        public RegisterPage(AuthService auth)
         {
-            StatusLbl.Text = "Creando cuenta...";
-            RegisterBtn.IsEnabled = false;
+            InitializeComponent();
+            _auth = auth ?? throw new ArgumentNullException(nameof(auth));
+        }
 
-            var name = NameEntry?.Text?.Trim() ?? string.Empty;
-            var email = EmailEntry?.Text?.Trim() ?? string.Empty;
-            var pass = PasswordEntry?.Text ?? string.Empty;
+        // Constructor vacío para XAML y navegación
+        public RegisterPage() : this(ResolveAuthService()) { }
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(pass))
+        private static AuthService ResolveAuthService()
+        {
+            var mauiContext = App.Current?.Handler?.MauiContext;
+            var auth = mauiContext?.Services.GetService<AuthService>();
+            if (auth == null)
+                throw new InvalidOperationException("AuthService no está registrado en DI. Revisa MauiProgram.cs.");
+            return auth;
+        }
+
+        private async void RegisterBtn_Clicked(object sender, EventArgs e)
+        {
+            try
             {
-                await DisplayAlert("Error", "Completa todos los campos.", "OK");
-                return;
-            }
+                StatusLbl.Text = "Creando cuenta...";
+                RegisterBtn.IsEnabled = false;
 
-            var success = await AuthService.RegisterUser(email, pass, name);
-            if (!success)
-            {
-                await DisplayAlert("Error", "No se pudo crear la cuenta.", "OK");
-                return;
-            }
+                var name = NameEntry?.Text?.Trim() ?? string.Empty;
+                var email = EmailEntry?.Text?.Trim() ?? string.Empty;
+                var pass = PasswordEntry?.Text ?? string.Empty;
 
-            Preferences.Set("UserId", AppState.CurrentUserUid);
-            Preferences.Set("UserName", AppState.CurrentUserName);
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(pass))
+                {
+                    await DisplayAlert("Error", "Completa todos los campos.", "OK");
+                    return;
+                }
 
-            await DisplayAlert("Registro exitoso", "Tu cuenta fue creada. Inicia sesión.", "OK");
+                var success = await _auth.RegisterUser(email, pass, name);
+                if (!success)
+                {
+                    await DisplayAlert("Error", "No se pudo crear la cuenta.", "OK");
+                    return;
+                }
 
-            if (Navigation.NavigationStack.Count > 0)
+                await DisplayAlert("Registro exitoso", "Tu cuenta fue creada. Inicia sesión.", "OK");
                 await Navigation.PopAsync();
+            }
+            finally
+            {
+                RegisterBtn.IsEnabled = true;
+                StatusLbl.Text = string.Empty;
+            }
         }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-        finally
-        {
-            RegisterBtn.IsEnabled = true;
-            StatusLbl.Text = string.Empty;
-        }
-    }
-    private async void GoLogin_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new LoginPage());
-    }
 
+        private async void GoLogin_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage()); // constructor vacío resuelve DI
+        }
+    }
 }

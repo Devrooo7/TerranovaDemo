@@ -5,12 +5,24 @@ namespace TerranovaDemo
 {
     public partial class LoginPage : ContentPage
     {
-        private double _lastWidth = -1;
-        private double _lastHeight = -1;
+        private readonly AuthService _auth;
 
-        public LoginPage()
+        // Constructor requerido por DI
+        public LoginPage(AuthService auth)
         {
             InitializeComponent();
+            _auth = auth ?? throw new ArgumentNullException(nameof(auth));
+        }
+
+        // Constructor vacío opcional para XAML: resuelve desde DI
+        public LoginPage() : this(ResolveAuthService()) { }
+
+        private static AuthService ResolveAuthService()
+        {
+            var auth = IPlatformApplication.Current.Services.GetService<AuthService>();
+            if (auth == null)
+                throw new InvalidOperationException("AuthService no está registrado en DI. Revisa MauiProgram.cs.");
+            return auth;
         }
 
         private async void LoginBtn_Clicked(object sender, EventArgs e)
@@ -20,8 +32,8 @@ namespace TerranovaDemo
                 StatusLbl.Text = "Autenticando...";
                 LoginBtn.IsEnabled = false;
 
-                var email = EmailEntry?.Text?.Trim() ?? "";
-                var pass = PasswordEntry?.Text ?? "";
+                string email = EmailEntry?.Text?.Trim() ?? "";
+                string pass = PasswordEntry?.Text ?? "";
 
                 if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(pass))
                 {
@@ -29,22 +41,16 @@ namespace TerranovaDemo
                     return;
                 }
 
-                var success = await AuthService.LoginUser(email, pass);
+                bool success = await _auth.LoginAsync(email, pass);
+
                 if (!success)
                 {
-                    await DisplayAlert("Error", "Credenciales inválidas.", "OK");
+                    await DisplayAlert("Error", "Correo o contraseña incorrectos.", "OK");
                     return;
                 }
 
-                // ✅ Guardar sesión
-                Preferences.Set("UserId", AppState.CurrentUserUid);
-                Preferences.Set("UserName", AppState.CurrentUserName);
-
-                // ✅ Cambiar a AppShell (con barra verde y menú hamburguesa)
-                if (Application.Current.Windows.Count > 0)
-                    Application.Current.Windows[0].Page = new AppShell();
-                else
-                    Application.Current.MainPage = new AppShell();
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync("//mainpage");
             }
             catch (Exception ex)
             {
@@ -52,30 +58,14 @@ namespace TerranovaDemo
             }
             finally
             {
-                LoginBtn.IsEnabled = true;
                 StatusLbl.Text = "";
+                LoginBtn.IsEnabled = true;
             }
         }
 
         private async void GoRegister_Clicked(object sender, EventArgs e)
         {
-            // ✅ Abre la página de registro dentro del mismo contexto
             await Navigation.PushAsync(new RegisterPage());
-        }
-
-        // ✅ Protección contra recursión por cambio de tamaño
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-
-            if (Math.Abs(width - _lastWidth) > 0.1 || Math.Abs(height - _lastHeight) > 0.1)
-            {
-                _lastWidth = width;
-                _lastHeight = height;
-
-                // Si quieres hacer ajustes visuales según tamaño, hazlo aquí.
-                // No llames ForceLayout() para evitar recursión infinita.
-            }
         }
     }
 }

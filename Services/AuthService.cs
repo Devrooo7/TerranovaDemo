@@ -1,52 +1,96 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.Maui.Storage;
 
 namespace TerranovaDemo.Services
 {
-    public static class AuthService
+    public class AuthService
     {
-        private static readonly FirebaseAuthClient _firebaseClient = new FirebaseAuthClient();
+        private readonly FirebaseAuthClient _firebase;
 
-        public static async Task<bool> LoginUser(string email, string password)
+        public AuthService(FirebaseAuthClient firebase)
         {
-            var res = await _firebaseClient.SignInAsync(email, password);
-            if (res != null)
-            {
-                AppState.CurrentUserUid = res.LocalId ?? "";
-                AppState.CurrentUserName = res.DisplayName ?? "Usuario";
-
-                // Recuperar nombre real desde Firestore o Realtime Database
-                try
-                {
-                    var userData = await _firebaseClient.GetUserExtraDataAsync(res.LocalId!);
-                    if (userData != null && userData.ContainsKey("name"))
-                        AppState.CurrentUserName = userData["name"].ToString();
-                }
-                catch { }
-
-                return true;
-            }
-            return false;
+            _firebase = firebase;
         }
 
-        public static async Task<bool> RegisterUser(string email, string password, string displayName)
+        // -------------------------------------------------------------
+        // LOGIN
+        // -------------------------------------------------------------
+        public async Task<bool> LoginAsync(string email, string password)
         {
-            var res = await _firebaseClient.SignUpAsync(email, password, displayName);
-            if (res != null)
-            {
-                AppState.CurrentUserUid = res.LocalId ?? "";
-                AppState.CurrentUserName = displayName;
+            var res = await _firebase.LoginUserAsync(email, password);
 
-                await _firebaseClient.SaveUserInDatabaseAsync(res.LocalId!, email, displayName);
-                return true;
-            }
-            return false;
+            if (!res.success)
+                return false;
+
+            // Guardar tokens
+            SessionStore.SaveToken(res.idToken);
+            SessionStore.SaveRefresh(res.refreshToken);
+            SessionStore.SaveUid(res.localId);
+
+            // Nombre
+            var extra = await _firebase.GetUserExtraDataAsync(res.localId);
+            string finalName =
+                extra.ContainsKey("name") ? extra["name"].ToString()! :
+                res.displayName ?? "Usuario";
+
+            SessionStore.SaveUserName(finalName);
+
+            AppState.CurrentUserUid = res.localId;
+            AppState.CurrentUserName = finalName;
+            AppState.IsLogged = true;
+
+            return true;
         }
 
-        public static async Task LogoutAsync()
+        // -------------------------------------------------------------
+        // REGISTRO
+        // -------------------------------------------------------------
+        public async Task<bool> RegisterUser(string email, string password, string displayName)
         {
-            AppState.CurrentUserUid = "";
-            AppState.CurrentUserName = "";
-            await SessionStore.ClearAsync();
+            var result = await _firebase.RegisterAsync(email, password);
+            if (!result.success)
+                return false;
+
+            await _firebase.SaveUserNameAsync(result.uid, displayName, email);
+
+            SessionStore.SaveUid(result.uid);
+            SessionStore.SaveUserName(displayName);
+
+            AppState.CurrentUserUid = result.uid;
+            AppState.CurrentUserName = displayName;
+            AppState.IsLogged = true;
+
+            return true;
+        }
+
+        // -------------------------------------------------------------
+        // LOGOUT
+        // -------------------------------------------------------------
+        public async Task LogoutAsync()
+        {
+            SessionStore.ClearSession();
+
+            AppState.IsLogged = false;
+            AppState.CurrentUserUid = string.Empty;
+            AppState.CurrentUserName = string.Empty;
+
+            await Task.CompletedTask;
+        }
+
+        // -------------------------------------------------------------
+        // OBTENER NOMBRE
+        // -------------------------------------------------------------
+        public async Task<string> GetUserNameAsync()
+        {
+            var uid = SessionStore.GetUid();
+            if (string.IsNullOrEmpty(uid))
+                return "Usuario";
+
+            var extra = await _firebase.GetUserExtraDataAsync(uid);
+
+            if (extra.ContainsKey("name"))
+                return extra["name"].ToString()!;
+
+            return SessionStore.GetUserName();
         }
     }
 }
