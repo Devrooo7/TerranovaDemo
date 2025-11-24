@@ -12,37 +12,44 @@
              BackgroundColor="#B7E4C7"
              Padding="20">
 
-    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="20">
+    <Grid RowDefinitions="Auto,Auto,*,Auto" RowSpacing="20">
 
-        <!-- Barra superior (título y botón de bomba) -->
-        <Grid ColumnDefinitions="Auto,Auto,*,Auto" VerticalOptions="Start">
+        <!-- Barra superior -->
+        <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto,Auto">
+
             <Label Text="Bomba"
-                   Grid.Column="0"
-                   TextColor="Black"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Start" />
+                   Grid.Column="0" Grid.Row="0"
+                   TextColor="Black" FontSize="24" FontAttributes="Bold"
+                   VerticalOptions="Center" />
 
             <Button x:Name="BombaButton"
-                    Grid.Column="1"
+                    Grid.Column="1" Grid.Row="0"
                     Text="OFF"
                     Clicked="BombaButton_Clicked"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    Margin="10,0,0,0"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Center"/>
+                    BackgroundColor="Red" TextColor="White"
+                    Margin="10,0,0,0" />
+
+            <Label x:Name="HumidityLabel"
+                   Grid.Column="0" Grid.Row="1"
+                   Text="Humedad: --%"
+                   FontSize="18" TextColor="Black" />
+
+            <Label x:Name="TemperatureLabel"
+                   Grid.Column="1" Grid.Row="1"
+                   Text="Temp: --°C"
+                   FontSize="18" TextColor="Black" />
+
         </Grid>
 
-        <!-- Gráfica de sensores -->
+        <!-- Gráfica -->
         <skia:SKCanvasView x:Name="SensorsCanvas"
-                           Grid.Row="1"
+                           Grid.Row="2"
                            HeightRequest="300"
-                           PaintSurface="OnCanvasViewPaintSurface"/>
+                           PaintSurface="OnCanvasViewPaintSurface"
+                           IgnorePixelScaling="True"/>
 
         <!-- Barra inferior -->
-        <local:BottomNavBar Grid.Row="2"/>
+        <local:BottomNavBar Grid.Row="3"/>
 
     </Grid>
 </ContentPage>

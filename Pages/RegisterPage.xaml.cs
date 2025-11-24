@@ -1,5 +1,4 @@
 ﻿using Microsoft.Maui.Controls;
-using System;
 using TerranovaDemo.Services;
 
 namespace TerranovaDemo
@@ -8,14 +7,12 @@ namespace TerranovaDemo
     {
         private readonly AuthService _auth;
 
-        // Constructor DI
         public RegisterPage(AuthService auth)
         {
             InitializeComponent();
             _auth = auth ?? throw new ArgumentNullException(nameof(auth));
         }
 
-        // Constructor vacío para XAML y navegación
         public RegisterPage() : this(ResolveAuthService()) { }
 
         private static AuthService ResolveAuthService()
@@ -37,6 +34,7 @@ namespace TerranovaDemo
                 var name = NameEntry?.Text?.Trim() ?? string.Empty;
                 var email = EmailEntry?.Text?.Trim() ?? string.Empty;
                 var pass = PasswordEntry?.Text ?? string.Empty;
+                var phone = PhoneEntry?.Text?.Trim() ?? string.Empty;
 
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(pass))
                 {
@@ -44,7 +42,7 @@ namespace TerranovaDemo
                     return;
                 }
 
-                var success = await _auth.RegisterUser(email, pass, name);
+                var success = await _auth.RegisterUserAsync(email, pass, name, phone);
                 if (!success)
                 {
                     await DisplayAlert("Error", "No se pudo crear la cuenta.", "OK");
@@ -63,7 +61,7 @@ namespace TerranovaDemo
 
         private async void GoLogin_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new LoginPage()); // constructor vacío resuelve DI
+            await Navigation.PushAsync(new LoginPage());
         }
     }
 }

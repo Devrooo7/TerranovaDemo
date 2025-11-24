@@ -7,14 +7,12 @@ namespace TerranovaDemo
     {
         private readonly AuthService _auth;
 
-        // Constructor requerido por DI
         public LoginPage(AuthService auth)
         {
             InitializeComponent();
             _auth = auth ?? throw new ArgumentNullException(nameof(auth));
         }
 
-        // Constructor vacío opcional para XAML: resuelve desde DI
         public LoginPage() : this(ResolveAuthService()) { }
 
         private static AuthService ResolveAuthService()

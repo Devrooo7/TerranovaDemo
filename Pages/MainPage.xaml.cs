@@ -1,282 +1,240 @@
-﻿using Microsoft.Maui.Controls;
-using SkiaSharp;
-using SkiaSharp.Views.Maui;
-using SkiaSharp.Views.Maui.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Dispatching;
+using SkiaSharp;
+using SkiaSharp.Views.Maui;
+using SkiaSharp.Views.Maui.Controls;
+using TerranovaDemo.Services;
 
-namespace TerranovaDemo;
-
-public partial class MainPage : ContentPage
+namespace TerranovaDemo
 {
-    private readonly List<float> _humidityData = new();
-    private readonly List<float> _temperatureData = new();
-    private bool _bombaEncendida = false;
-    private readonly System.Timers.Timer _timer;
-    private bool _esp32Disponible = false;
-
-    private const string ESP32_IP = "192.168.1.16";
-
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
+        private readonly List<float> _humidityData = new();
+        private readonly List<float> _temperatureData = new();
 
-        // Inicializa datos de ejemplo
-        for (int i = 0; i < 12; i++)
+        private bool _bombaEncendida = false;
+        private bool _esp32Disponible = false;
+        private readonly System.Timers.Timer _timer;
+
+        private readonly AuthService _auth;
+        private readonly FirebaseAuthClient _firebase;
+
+        public MainPage(AuthService auth, FirebaseAuthClient firebase)
         {
-            _humidityData.Add(30);
-            _temperatureData.Add(25);
+            InitializeComponent();
+
+            _auth = auth ?? throw new ArgumentNullException(nameof(auth));
+            _firebase = firebase ?? throw new ArgumentNullException(nameof(firebase));
+
+            for (int i = 0; i < 12; i++)
+            {
+                _humidityData.Add(30f);
+                _temperatureData.Add(25f);
+            }
+
+            // Suscripción al evento que dispara SettingsPage
+            AppState.OnNewEspData += OnEsp32DataReceived;
+
+            _ = CheckESP32Connection();
+
+            _timer = new System.Timers.Timer(1000);
+            _timer.Elapsed += (s, e) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() => SensorsCanvas.InvalidateSurface());
+            };
+            _timer.Start();
+
+            UpdateBombaButton();
         }
 
-        CheckESP32Connection();
-
-        _timer = new System.Timers.Timer(1000);
-        _timer.Elapsed += (s, e) => MainThread.BeginInvokeOnMainThread(() =>
+        protected override void OnDisappearing()
         {
-            SensorsCanvas.InvalidateSurface();
-        });
-        _timer.Start();
-    }
+            base.OnDisappearing();
+            // Desuscripción del evento
+            AppState.OnNewEspData -= OnEsp32DataReceived;
+            _timer?.Stop();
+        }
 
-    private async void CheckESP32Connection()
-    {
-        while (true)
+        private void OnEsp32DataReceived(ESP32Data data)
         {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                if (data is null) return;
+
+                // 1. Actualizar los datos de la gráfica
+                UpdateSensorData(data.humedadSuelo, data.temperatura);
+
+                // 2. Actualizar las etiquetas y el estado de la bomba
+                HumidityLabel.Text = $"Humedad: {data.humedadSuelo}%";
+                TemperatureLabel.Text = $"Temp: {data.temperatura:F1}°C";
+
+                _bombaEncendida = data.bombaStatus;
+                UpdateBombaButton();
+
+                // 3. Forzar el redibujado de la gráfica AHORA
+                // 🟢 CORRECCIÓN APLICADA: Forzar redibujado
+                SensorsCanvas.InvalidateSurface();
+
+                // 4. Guardar datos en Firebase (Responsabilidad única de MainPage)
+                string uid = AppState.CurrentUserUid;
+                string deviceId = SessionStore.GetDeviceId();
+                if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(deviceId))
+                {
+                    string deviceIp = SessionStore.GetDeviceIp();
+                    await _firebase.SaveSensorDataAsync(uid, deviceId, data.humedadSuelo, data.temperatura, data.bombaStatus, deviceIp);
+                }
+            });
+        }
+
+        private async Task CheckESP32Connection()
+        {
+            while (true)
+            {
+                try
+                {
+                    string ip = AppState.SavedESP32Ip;
+                    if (!string.IsNullOrEmpty(ip))
+                    {
+                        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
+                        // 🟢 CORRECCIÓN 3.1: Cambiar /ping por el endpoint raíz "/"
+                        var response = await client.GetAsync($"http://{ip}/");
+                        _esp32Disponible = response.IsSuccessStatusCode;
+                    }
+                    else _esp32Disponible = false;
+                }
+                catch
+                {
+                    _esp32Disponible = false;
+                }
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    BombaButton.IsEnabled = _esp32Disponible;
+                    // Mantenemos el color de la bomba en base a su estado (_bombaEncendida) y no de la disponibilidad
+                    // Pero la disponibilidad del botón sí depende de _esp32Disponible
+                });
+
+                await Task.Delay(5000);
+            }
+        }
+
+        private async void BombaButton_Clicked(object sender, EventArgs e)
+        {
+            if (!_esp32Disponible)
+            {
+                await DisplayAlert("Sin conexión", "El ESP32 no está disponible.", "OK");
+                return;
+            }
+
+            _bombaEncendida = !_bombaEncendida;
+            UpdateBombaButton();
+
+            string action = _bombaEncendida ? "on" : "off";
+            string ip = AppState.SavedESP32Ip;
+            string url = $"http://{ip}/bomba/{action}";
+
             try
             {
-                using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
-                var response = await http.GetAsync($"http://{ESP32_IP}/ping");
-                _esp32Disponible = response.IsSuccessStatusCode;
+                using var http = new HttpClient();
+                var response = await http.GetAsync(url);
+
+                if (!response.IsSuccessStatusCode)
+                    await DisplayAlert("Error", "No se pudo enviar la señal a la bomba.", "OK");
+
+                string uid = AppState.CurrentUserUid;
+                string deviceId = SessionStore.GetDeviceId();
+                if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(deviceId))
+                    await _firebase.UpdatePumpStateAsync(uid, deviceId, _bombaEncendida);
             }
             catch
             {
-                _esp32Disponible = false;
+                await DisplayAlert("Error", "No se pudo conectar al ESP32.", "OK");
+            }
+        }
+
+        private void UpdateBombaButton()
+        {
+            BombaButton.Text = _bombaEncendida ? "ON" : "OFF";
+            BombaButton.BackgroundColor = _bombaEncendida ? Microsoft.Maui.Graphics.Colors.Green : Microsoft.Maui.Graphics.Colors.Red;
+        }
+
+        private void UpdateSensorData(int humidity, float temperature)
+        {
+            if (_humidityData.Count >= 12) _humidityData.RemoveAt(0);
+            if (_temperatureData.Count >= 12) _temperatureData.RemoveAt(0);
+
+            _humidityData.Add(humidity);
+            _temperatureData.Add(temperature);
+        }
+
+        private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs e)
+        {
+            var canvas = e.Surface.Canvas;
+            float width = e.Info.Width;
+            float height = e.Info.Height;
+            canvas.Clear(SKColors.White);
+
+            float marginLeft = 80, marginBottom = 60, marginTop = 60, marginRight = 40;
+            float graphWidth = width - marginLeft - marginRight;
+            float graphHeight = height - marginBottom - marginTop;
+
+            using var paintGrid = new SKPaint { Color = new SKColor(60, 60, 60, 100), StrokeWidth = 1, IsAntialias = true };
+            using var paintAxes = new SKPaint { Color = SKColors.Black, StrokeWidth = 2, IsAntialias = true };
+            using var paintTextY = new SKPaint { Color = new SKColor(40, 40, 40), TextSize = 22, IsAntialias = true, TextAlign = SKTextAlign.Right };
+            using var paintTextX = new SKPaint { Color = new SKColor(40, 40, 40), TextSize = 22, IsAntialias = true, TextAlign = SKTextAlign.Center };
+
+            for (int y = 0; y <= 100; y += 10)
+            {
+                float py = marginTop + graphHeight - (y / 100f * graphHeight);
+                canvas.DrawLine(marginLeft, py, marginLeft + graphWidth, py, paintGrid);
+                canvas.DrawText(y.ToString(), marginLeft - 10, py + 6, paintTextY);
             }
 
-            MainThread.BeginInvokeOnMainThread(() =>
+            for (int i = 0; i <= 12; i++)
             {
-                BombaButton.IsEnabled = _esp32Disponible;
-                BombaButton.BackgroundColor = _esp32Disponible ? Colors.Red : Colors.Gray;
-            });
+                float px = marginLeft + i * (graphWidth / 12f);
+                canvas.DrawLine(px, marginTop, px, marginTop + graphHeight, paintGrid);
+                canvas.DrawText(i.ToString(), px, marginTop + graphHeight + 25, paintTextX);
+            }
 
-            await Task.Delay(5000);
-        }
-    }
+            canvas.DrawLine(marginLeft, marginTop, marginLeft, marginTop + graphHeight, paintAxes);
+            canvas.DrawLine(marginLeft, marginTop + graphHeight, marginLeft + graphWidth, marginTop + graphHeight, paintAxes);
 
-    private async void BombaButton_Clicked(object sender, EventArgs e)
-    {
-        if (!_esp32Disponible)
-        {
-            await DisplayAlert("Sin conexión", "El ESP32 no está disponible.", "OK");
-            return;
-        }
+            // Se dibuja la humedad (azul)
+            DrawGraphLine(canvas, _humidityData, graphWidth, graphHeight, marginLeft, marginTop, SKColors.Aqua, 100f);
 
-        _bombaEncendida = !_bombaEncendida;
-        UpdateBombaButton();
-
-        string action = _bombaEncendida ? "on" : "off";
-        string url = $"http://{ESP32_IP}/bomba/{action}";
-
-        try
-        {
-            using var http = new HttpClient();
-            var response = await http.GetAsync(url);
-
-            if (!response.IsSuccessStatusCode)
-                await DisplayAlert("Error", "No se pudo enviar la señal a la bomba.", "OK");
-        }
-        catch
-        {
-            await DisplayAlert("Error", "No se pudo conectar al ESP32.", "OK");
-        }
-    }
-
-    private void UpdateBombaButton()
-    {
-        BombaButton.Text = _bombaEncendida ? "ON" : "OFF";
-        BombaButton.BackgroundColor = _bombaEncendida ? Colors.Green : Colors.Red;
-    }
-
-    public void UpdateSensorData(float humidity, float temperature)
-    {
-        if (_humidityData.Count >= 12) _humidityData.RemoveAt(0);
-        if (_temperatureData.Count >= 12) _temperatureData.RemoveAt(0);
-
-        _humidityData.Add(humidity);
-        _temperatureData.Add(temperature);
-    }
-
-    private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs e)
-    {
-        var canvas = e.Surface.Canvas;
-        float width = e.Info.Width;
-        float height = e.Info.Height;
-        canvas.Clear(SKColors.White);
-
-        // Márgenes
-        float marginLeft = 80, marginBottom = 60, marginTop = 60, marginRight = 40;
-        float graphWidth = width - marginLeft - marginRight;
-        float graphHeight = height - marginBottom - marginTop;
-
-        // Cuadrícula y ejes
-        using var paintGrid = new SKPaint
-        {
-            Color = new SKColor(60, 60, 60, 100),
-            StrokeWidth = 1,
-            IsAntialias = true
-        };
-        using var paintAxes = new SKPaint
-        {
-            Color = SKColors.Black,
-            StrokeWidth = 2,
-            IsAntialias = true
-        };
-
-        // Texto auxiliar
-        using var paintTextY = new SKPaint
-        {
-            Color = new SKColor(40, 40, 40),
-            TextSize = 22,
-            IsAntialias = true,
-            TextAlign = SKTextAlign.Right
-        };
-        using var paintTextX = new SKPaint
-        {
-            Color = new SKColor(40, 40, 40),
-            TextSize = 22,
-            IsAntialias = true,
-            TextAlign = SKTextAlign.Center
-        };
-
-        // Cuadrícula horizontal + etiquetas Y (0-100)
-        for (int y = 0; y <= 100; y += 10)
-        {
-            float py = marginTop + graphHeight - (y / 100f * graphHeight);
-            canvas.DrawLine(marginLeft, py, marginLeft + graphWidth, py, paintGrid);
-            canvas.DrawText(y.ToString(), marginLeft - 10, py + 6, paintTextY);
+            // Se dibuja la temperatura (oro/amarillo)
+            // 💡 Nota: La temperatura se escala a 100f. Si la temperatura máxima real es 50°C, 
+            // considera cambiar el divisor (ej. 50f) para que se vea mejor. 
+            // Por ahora, usamos 100f para que se mantenga dentro del gráfico de 0-100.
+            DrawGraphLine(canvas, _temperatureData, graphWidth, graphHeight, marginLeft, marginTop, new SKColor(255, 215, 0), 100f);
         }
 
-        // Cuadrícula vertical + etiquetas X (12 puntos como horas)
-        for (int i = 0; i <= 12; i++)
+        // Se modifica para recibir la escala máxima
+        private void DrawGraphLine(SKCanvas canvas, List<float> data, float graphWidth, float graphHeight, float marginLeft, float marginTop, SKColor color, float scaleMax)
         {
-            float px = marginLeft + i * (graphWidth / 12f);
-            canvas.DrawLine(px, marginTop, px, marginTop + graphHeight, paintGrid);
-            canvas.DrawText(i.ToString(), px, marginTop + graphHeight + 25, paintTextX);
-        }
+            if (data == null || data.Count < 2) return;
 
-        // Ejes
-        canvas.DrawLine(marginLeft, marginTop, marginLeft, marginTop + graphHeight, paintAxes);
-        canvas.DrawLine(marginLeft, marginTop + graphHeight, marginLeft + graphWidth, marginTop + graphHeight, paintAxes);
+            var path = new SKPath();
 
-        // Colores base
-        var baseHumidityColor = SKColors.Aqua;
-        var baseGoldenColor = new SKColor(255, 215, 0); // dorado real
-        var neonYellowColor = SKColors.Yellow; // línea de temperatura neon
+            // Usamos scaleMax para calcular la posición Y
+            float y0 = marginTop + graphHeight - (Math.Min(data[0], scaleMax) / scaleMax * graphHeight);
+            path.MoveTo(marginLeft, y0);
 
-        int count = Math.Min(_humidityData.Count, _temperatureData.Count);
-        if (count < 2) return;
-
-        // Mantos más visibles
-        // --- HUMEDAD ---
-        var pathHumidity = new SKPath();
-        pathHumidity.MoveTo(marginLeft, marginTop + graphHeight - (_humidityData[0] / 100f * graphHeight));
-        for (int i = 1; i < _humidityData.Count; i++)
-        {
-            float x = marginLeft + i * (graphWidth / 12f);
-            float y = marginTop + graphHeight - (_humidityData[i] / 100f * graphHeight);
-            pathHumidity.LineTo(x, y);
-        }
-        pathHumidity.LineTo(marginLeft + graphWidth, marginTop + graphHeight);
-        pathHumidity.LineTo(marginLeft, marginTop + graphHeight);
-        pathHumidity.Close();
-
-        using var paintFillH = new SKPaint
-        {
-            Style = SKPaintStyle.Fill,
-            Shader = SKShader.CreateLinearGradient(
-                new SKPoint(0, marginTop),
-                new SKPoint(0, marginTop + graphHeight),
-                new[] { new SKColor(0, 255, 255, 180), new SKColor(0, 255, 255, 60) },
-                null,
-                SKShaderTileMode.Clamp)
-        };
-        canvas.DrawPath(pathHumidity, paintFillH);
-
-        // --- TEMPERATURA (manto dorado)
-        var pathTemperature = new SKPath();
-        pathTemperature.MoveTo(marginLeft, marginTop + graphHeight - (_temperatureData[0] / 100f * graphHeight));
-        for (int i = 1; i < _temperatureData.Count; i++)
-        {
-            float x = marginLeft + i * (graphWidth / 12f);
-            float y = marginTop + graphHeight - (_temperatureData[i] / 100f * graphHeight);
-            pathTemperature.LineTo(x, y);
-        }
-        pathTemperature.LineTo(marginLeft + graphWidth, marginTop + graphHeight);
-        pathTemperature.LineTo(marginLeft, marginTop + graphHeight);
-        pathTemperature.Close();
-
-        using var paintFillT = new SKPaint
-        {
-            Style = SKPaintStyle.Fill,
-            Shader = SKShader.CreateLinearGradient(
-                new SKPoint(0, marginTop),
-                new SKPoint(0, marginTop + graphHeight),
-                new[] { new SKColor(255, 215, 0, 170), new SKColor(255, 215, 0, 60) },
-                null,
-                SKShaderTileMode.Clamp)
-        };
-        canvas.DrawPath(pathTemperature, paintFillT);
-
-        // Líneas principales
-        for (int i = 0; i < _humidityData.Count - 1; i++)
-        {
-            float x1 = marginLeft + i * (graphWidth / 12f);
-            float x2 = x1 + (graphWidth / 12f);
-            float y1H = marginTop + graphHeight - (_humidityData[i] / 100f * graphHeight);
-            float y2H = marginTop + graphHeight - (_humidityData[i + 1] / 100f * graphHeight);
-            float y1T = marginTop + graphHeight - (_temperatureData[i] / 100f * graphHeight);
-            float y2T = marginTop + graphHeight - (_temperatureData[i + 1] / 100f * graphHeight);
-
-            float alphaFactor = 0.25f + (0.75f * (i / (float)(_humidityData.Count - 1)));
-
-            using var paintH = new SKPaint
+            for (int i = 1; i < data.Count; i++)
             {
-                Color = new SKColor(0, 255, 255, (byte)(255 * alphaFactor)),
-                StrokeWidth = 4,
-                IsAntialias = true,
-                StrokeCap = SKStrokeCap.Round
-            };
-            using var paintT = new SKPaint
-            {
-                Color = neonYellowColor, // línea neon
-                StrokeWidth = 4,
-                IsAntialias = true,
-                StrokeCap = SKStrokeCap.Round
-            };
+                float x = marginLeft + i * (graphWidth / 12f);
+                // Usamos scaleMax
+                float y = marginTop + graphHeight - (Math.Min(data[i], scaleMax) / scaleMax * graphHeight);
+                path.LineTo(x, y);
+            }
 
-            canvas.DrawLine(x1, y1H, x2, y2H, paintH);
-            canvas.DrawLine(x1, y1T, x2, y2T, paintT);
+            using var paint = new SKPaint { Color = color, StrokeWidth = 4, Style = SKPaintStyle.Stroke, IsAntialias = true };
+            canvas.DrawPath(path, paint);
         }
-
-        // Puntos finales destacados
-        float finalX = marginLeft + (count - 1) * (graphWidth / 12f);
-        float pyH = marginTop + graphHeight - (_humidityData[^1] / 100f * graphHeight);
-        float pyT = marginTop + graphHeight - (_temperatureData[^1] / 100f * graphHeight);
-
-        canvas.DrawCircle(finalX, pyH, 6, new SKPaint { Color = baseHumidityColor, IsAntialias = true });
-        canvas.DrawCircle(finalX, pyT, 6, new SKPaint { Color = baseGoldenColor, IsAntialias = true });
-
-        // Leyendas
-        string textHumidity = $"Humedad: {_humidityData[^1]:F1}%";
-        string textTemperature = $"Temperatura: {_temperatureData[^1]:F1}°C";
-        using var paintLegend = new SKPaint { IsAntialias = true, TextSize = 30 };
-
-        paintLegend.Color = baseHumidityColor;
-        canvas.DrawText(textHumidity, marginLeft, marginTop - 20, paintLegend);
-        paintLegend.Color = baseGoldenColor;
-        canvas.DrawText(textTemperature, marginLeft + 300, marginTop - 20, paintLegend);
     }
 }

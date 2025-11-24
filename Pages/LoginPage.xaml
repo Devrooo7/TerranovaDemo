@@ -15,6 +15,7 @@
 
         <ScrollView AbsoluteLayout.LayoutFlags="All"
                     AbsoluteLayout.LayoutBounds="0,0,1,1">
+
             <VerticalStackLayout Padding="30"
                                  Spacing="18"
                                  VerticalOptions="CenterAndExpand">

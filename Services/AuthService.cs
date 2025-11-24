@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Storage;
+﻿using System.Threading.Tasks;
 
 namespace TerranovaDemo.Services
 {
@@ -11,26 +11,20 @@ namespace TerranovaDemo.Services
             _firebase = firebase;
         }
 
-        // -------------------------------------------------------------
-        // LOGIN
-        // -------------------------------------------------------------
+        // LOGIN: devuelve true si ok y guarda sesión
         public async Task<bool> LoginAsync(string email, string password)
         {
             var res = await _firebase.LoginUserAsync(email, password);
+            if (!res.success) return false;
 
-            if (!res.success)
-                return false;
-
-            // Guardar tokens
+            // 🟢 CORRECCIÓN 1.1: Guardar el email en SessionStore
             SessionStore.SaveToken(res.idToken);
             SessionStore.SaveRefresh(res.refreshToken);
             SessionStore.SaveUid(res.localId);
+            SessionStore.SaveUserEmail(email); // 👈 ¡Añadida!
 
-            // Nombre
             var extra = await _firebase.GetUserExtraDataAsync(res.localId);
-            string finalName =
-                extra.ContainsKey("name") ? extra["name"].ToString()! :
-                res.displayName ?? "Usuario";
+            string finalName = extra.ContainsKey("name") ? extra["name"].ToString()! : "Usuario";
 
             SessionStore.SaveUserName(finalName);
 
@@ -41,44 +35,33 @@ namespace TerranovaDemo.Services
             return true;
         }
 
-        // -------------------------------------------------------------
-        // REGISTRO
-        // -------------------------------------------------------------
-        public async Task<bool> RegisterUser(string email, string password, string displayName)
+        // REGISTRO: delega en FirebaseAuthClient.RegisterAsync (que guarda RT + FS)
+        public async Task<bool> RegisterUserAsync(string email, string password, string name, string phone = "")
         {
-            var result = await _firebase.RegisterAsync(email, password);
-            if (!result.success)
-                return false;
+            var result = await _firebase.RegisterAsync(email, password, name, phone);
+            if (!result.success) return false;
 
-            await _firebase.SaveUserNameAsync(result.uid, displayName, email);
-
+            // 🟢 CORRECCIÓN 1.2: Guardar el email en SessionStore
             SessionStore.SaveUid(result.uid);
-            SessionStore.SaveUserName(displayName);
+            SessionStore.SaveUserName(name);
+            SessionStore.SaveUserEmail(email); // 👈 ¡Añadida!
 
             AppState.CurrentUserUid = result.uid;
-            AppState.CurrentUserName = displayName;
+            AppState.CurrentUserName = name;
             AppState.IsLogged = true;
 
             return true;
         }
 
-        // -------------------------------------------------------------
-        // LOGOUT
-        // -------------------------------------------------------------
         public async Task LogoutAsync()
         {
             SessionStore.ClearSession();
-
             AppState.IsLogged = false;
-            AppState.CurrentUserUid = string.Empty;
-            AppState.CurrentUserName = string.Empty;
-
+            AppState.CurrentUserUid = "";
+            AppState.CurrentUserName = "";
             await Task.CompletedTask;
         }
 
-        // -------------------------------------------------------------
-        // OBTENER NOMBRE
-        // -------------------------------------------------------------
         public async Task<string> GetUserNameAsync()
         {
             var uid = SessionStore.GetUid();
@@ -86,11 +69,12 @@ namespace TerranovaDemo.Services
                 return "Usuario";
 
             var extra = await _firebase.GetUserExtraDataAsync(uid);
-
             if (extra.ContainsKey("name"))
                 return extra["name"].ToString()!;
 
             return SessionStore.GetUserName();
         }
+
+        public FirebaseAuthClient GetFirebaseClient() => _firebase;
     }
 }
