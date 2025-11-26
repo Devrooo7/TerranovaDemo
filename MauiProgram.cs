@@ -22,6 +22,15 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
             });
 
+        builder.ConfigureMauiAppConfiguration(config =>
+        {
+            config.AddInMemoryCollection(new Dictionary<string, string?>
+            {
+                { "maui:splash:Image", "splash.png" },   // Tu imagen
+                { "maui:splash:Color", "#FFFFFF" }       // Fondo blanco
+            });
+        });
+
         // Servicios
         builder.Services.AddSingleton<FirebaseAuthClient>();
         builder.Services.AddSingleton<AuthService>();

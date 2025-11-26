@@ -30,21 +30,36 @@
                     Margin="10,0,0,0" />
 
             <Label x:Name="HumidityLabel"
-                   Grid.Column="0" Grid.Row="1"
-                   Text="Humedad: --%"
-                   FontSize="18" TextColor="Black" />
+       Grid.Column="0" Grid.Row="3"
+       TextColor="Black"
+       FontSize="18">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Humedad: " FontAttributes="Bold" TextColor="Black"/>
+                        <Span Text="--%" TextColor="Black"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
             <Label x:Name="TemperatureLabel"
-                   Grid.Column="1" Grid.Row="1"
-                   Text="Temp: --°C"
-                   FontSize="18" TextColor="Black" />
+       Grid.Column="1" Grid.Row="3"
+       TextColor="Black"
+       FontSize="18">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Temp: " FontAttributes="Bold" TextColor="Black"/>
+                        <Span Text="--°C" TextColor="Black"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
 
         </Grid>
 
         <!-- Gráfica -->
         <skia:SKCanvasView x:Name="SensorsCanvas"
                            Grid.Row="2"
-                           HeightRequest="300"
+                           HeightRequest="380"
                            PaintSurface="OnCanvasViewPaintSurface"
                            IgnorePixelScaling="True"/>
 
