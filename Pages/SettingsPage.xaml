@@ -44,23 +44,7 @@
                         Padding="20,10"
                         WidthRequest="260"/>
 
-                <!-- TELÉFONO -->
-                <Entry x:Name="PhoneNumberEntry"
-                       Placeholder="Número de teléfono"
-                       Keyboard="Telephone"
-                       BackgroundColor="White"
-                       TextColor="Black"
-                       PlaceholderColor="#4CAF50"
-                       WidthRequest="260"
-                       HorizontalOptions="Center"/>
-
-                <Button Text="💾 Guardar Configuración"
-                        Clicked="SavePhoneButton_Clicked"
-                        BackgroundColor="#43A047"
-                        TextColor="White"
-                        CornerRadius="12"
-                        Padding="20,10"
-                        WidthRequest="260"/>
+               
 
                 <Button Text="🚪 Cerrar Sesión"
                         Clicked="LogoutButton_Clicked"

@@ -259,42 +259,7 @@ namespace TerranovaDemo
         // GUARDADO TELÉFONO
         // ============================================================
 
-        private async void SavePhoneButton_Clicked(object sender, EventArgs e)
-        {
-            var phone = PhoneNumberEntry.Text?.Trim() ?? "";
-            if (string.IsNullOrEmpty(phone)) { await DisplayAlert("Aviso", "Ingresa un número", "OK"); return; }
-
-            var uid = SessionStore.GetUid();
-            if (string.IsNullOrEmpty(uid)) { await DisplayAlert("Error", "No hay usuario", "OK"); return; }
-
-            try
-            {
-                var extra = await _firebase.GetUserExtraDataAsync(uid);
-
-                string currentEmail = extra.ContainsKey("email") ? extra["email"].ToString()! : SessionStore.GetUserEmail();
-                string currentHash = extra.ContainsKey("passwordHash") ? extra["authHash"].ToString()! : "";
-                string currentName = AppState.CurrentUserName;
-
-                if (string.IsNullOrEmpty(currentEmail))
-                {
-                    await DisplayAlert("Error", "No se pudo obtener email.", "OK");
-                    return;
-                }
-
-                bool ok = await _firebase.SaveUserInfoAsync(uid, currentName, currentEmail, phone, currentHash);
-
-                if (ok)
-                {
-                    SessionStore.SavePhone(phone);
-                    await DisplayAlert("✔ Guardado", "Teléfono guardado", "OK");
-                }
-                else await DisplayAlert("❌ Error", "No se pudo guardar teléfono", "OK");
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("❌ Error", ex.Message, "OK");
-            }
-        }
+        
 
         // ============================================================
         // LOGOUT Y ELIMINAR

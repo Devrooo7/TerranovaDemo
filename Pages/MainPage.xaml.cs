@@ -69,8 +69,24 @@ namespace TerranovaDemo
                 UpdateSensorData(data.humedadSuelo, data.temperatura);
 
                 // 2. Actualizar las etiquetas y el estado de la bomba
-                HumidityLabel.Text = $"Humedad: {data.humedadSuelo}%";
-                TemperatureLabel.Text = $"Temp: {data.temperatura:F1}°C";
+                HumidityLabel.FormattedText = new FormattedString
+                {
+                    Spans =
+                     {
+                       new Span { Text = "Humedad: ", FontAttributes = FontAttributes.Bold, TextColor = Colors.Black },
+                       new Span { Text = $"{data.humedadSuelo}%", TextColor = Colors.Black }
+                     }
+                };
+
+                TemperatureLabel.FormattedText = new FormattedString
+                {
+                    Spans =
+                     {
+                       new Span { Text = "Temp: ", FontAttributes = FontAttributes.Bold, TextColor = Colors.Black },
+                       new Span { Text = $"{data.temperatura:F1}°C", TextColor = Colors.Black }
+                     }
+                };
+
 
                 _bombaEncendida = data.bombaStatus;
                 UpdateBombaButton();
