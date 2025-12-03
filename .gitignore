@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 # ignorar este archivo sensible de firebase
 terranova-62f60-firebase-adminsdk-fbsvc-8d8749a75c.json
 
+Platforms/Android/Resources/raw/service_account.json 
